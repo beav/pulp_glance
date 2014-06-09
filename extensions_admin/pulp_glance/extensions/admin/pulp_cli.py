@@ -1,5 +1,4 @@
 from gettext import gettext as _
-# NEED TO VERIFY
 
 from pulp.client.commands.repo import cudl, sync_publish, status
 from pulp.client.extensions.decorator import priority

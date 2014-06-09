@@ -1,5 +1,4 @@
 import hashlib
-# NEED TO VERIFY
 
 from pulp.client.commands.repo.upload import UploadCommand
 

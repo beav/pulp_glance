@@ -1,5 +1,4 @@
 from gettext import gettext as _
-# NEED TO VERIFY
 
 
 def parse_colon_separated(input_value):

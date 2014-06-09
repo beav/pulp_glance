@@ -1,5 +1,4 @@
 from gettext import gettext as _
-# NEED TO VERIFY
 
 from pulp.client.commands import options
 from pulp.client.commands.criteria import DisplayUnitAssociationsCommand
@@ -62,8 +61,8 @@ class ImageRemoveCommand(UnitRemoveCommand):
     @staticmethod
     def get_formatter_for_type(type_id):
         """
-        Returns a method that can be used to format the unit key of a puppet_module
-        for display purposes
+        Returns a method that can be used to format the unit key for display
+        purposes
 
         :param type_id: the type_id of the unit key to get a formatter for
         :type type_id: str

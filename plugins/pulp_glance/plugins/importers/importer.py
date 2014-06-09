@@ -1,5 +1,5 @@
 from gettext import gettext as _
-# NEED TO VERIFY
+
 import logging
 
 from pulp.common.config import read_json_config
@@ -78,9 +78,9 @@ class GlanceImageImporter(Importer):
         :rtype:           dict
         """
 
-        # TODO: metadata is passed in along with file
+        # TODO: fix
         # save those models as units in pulp
-        #upload.save_models(conduit, models, ancestry, file_path)
+        upload.save_models(conduit, models, file_path)
 
     def import_units(self, source_repo, dest_repo, import_conduit, config, units=None):
         """
@@ -144,15 +144,12 @@ class GlanceImageImporter(Importer):
             for u in units:
                 import_conduit.associate_unit(u)
                 units_added.append(u)
-                known_units.add(u.unit_key['image_id'])
-                parent_id = u.metadata.get('parent_id')
-                if parent_id:
-                    units_to_add.add(parent_id)
+                known_units.add(u.unit_key['image_checksum'])
             # Filter out units we have already added
             units_to_add.difference_update(known_units)
             # Find any new units to add to the repository
             if units_to_add:
-                unit_filter = {'image_id': {'$in': list(units_to_add)}}
+                unit_filter = {'image_checksum': {'$in': list(units_to_add)}}
                 criteria = UnitAssociationCriteria(type_ids=[constants.IMAGE_TYPE_ID],
                                                    unit_filters=unit_filter)
                 units = import_conduit.get_source_units(criteria=criteria)
@@ -187,12 +184,5 @@ class GlanceImageImporter(Importer):
         :type  config: pulp.plugins.config.PluginCallConfiguration
         """
         repo_manager = manager_factory.repo_manager()
-        scratchpad = repo_manager.get_repo_scratchpad(repo.id)
-        tags = scratchpad.get(u'tags', {})
-        unit_ids = set([unit.unit_key[u'image_id'] for unit in units])
-        for tag_key, tag_image_id in tags.items():
-            if tag_image_id in unit_ids:
-                del tags[tag_key]
-
-        scratchpad[u'tags'] = tags
-        repo_manager.set_repo_scratchpad(repo.id, scratchpad)
+        unit_ids = set([unit.unit_key[u'image_checksum'] for unit in units])
+        # TODO: fix

@@ -1,5 +1,4 @@
 import os
-# NEED TO VERIFY
 
 from pulp_glance.common import constants
 
@@ -7,15 +6,12 @@ from pulp_glance.common import constants
 class GlanceImage(object):
     TYPE_ID = constants.IMAGE_TYPE_ID
 
-    def __init__(self, image_id, arch):
+    def __init__(self, image_checksum):
         """
-        :param image_id:    image UUID
-        :type  image_id:    basestring
-        :param arch:        image architecture
-        :type  arch:        basestring
+        :param image_checksum:    MD5 sum
+        :type  image_checksum:    basestring
         """
-        self.image_id = image_id
-        self.arch = arch
+        self.image_checksum = image_checksum
 
     @property
     def unit_key(self):
@@ -24,7 +20,7 @@ class GlanceImage(object):
         :rtype:     dict
         """
         return {
-            'image_id': self.image_id
+            'image_checksum': self.image_checksum
         }
 
     @property
@@ -33,7 +29,7 @@ class GlanceImage(object):
         :return:    the relative path to where this image's directory should live
         :rtype:     basestring
         """
-        return os.path.join(self.TYPE_ID, self.image_id)
+        return os.path.join(self.TYPE_ID, self.image_checksum)
 
     @property
     def unit_metadata(self):

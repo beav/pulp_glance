@@ -1,5 +1,4 @@
 from gettext import gettext as _
-# NEED TO VERIFY
 
 from pulp.client.commands.repo.cudl import ListRepositoriesCommand
 from pulp.common import constants as pulp_constants

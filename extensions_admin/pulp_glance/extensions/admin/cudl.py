@@ -1,6 +1,4 @@
 from gettext import gettext as _
-# NEED TO VERIFY
-
 
 from pulp.client import parsers
 from pulp.client.commands.options import OPTION_REPO_ID
@@ -82,19 +80,8 @@ class UpdateGlanceRepositoryCommand(UpdateRepositoryCommand):
         if value is not None:
             web_config['auto_publish'] = value
 
-        if web_config or export_config:
-            kwargs['distributor_configs'] = {}
-
         if web_config:
+            kwargs['distributor_configs'] = {}
             kwargs['distributor_configs'][constants.CLI_WEB_DISTRIBUTOR_ID] = web_config
 
-        if export_config:
-            kwargs['distributor_configs'][constants.CLI_EXPORT_DISTRIBUTOR_ID] = export_config
-
-        # Update Tags
-        repo_id = kwargs.get(OPTION_REPO_ID.keyword)
-        response = self.context.server.repo.repository(repo_id).response_body
-        scratchpad = response.get(u'scratchpad', {})
-
         super(UpdateGlanceRepositoryCommand, self).run(**kwargs)
-
