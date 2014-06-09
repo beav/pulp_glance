@@ -1,4 +1,5 @@
 IMAGE_TYPE_ID = 'glance_image'
+# NEED TO VERIFY
 IMPORTER_TYPE_ID = 'glance_importer'
 IMPORTER_CONFIG_FILE_NAME = 'server/plugins.conf.d/glance_importer.json'
 DISTRIBUTOR_WEB_TYPE_ID = 'glance_distributor_web'

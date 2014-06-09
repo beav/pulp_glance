@@ -1,4 +1,5 @@
 from gettext import gettext as _
+# NEED TO VERIFY
 
 
 from pulp.client import parsers
@@ -56,9 +57,6 @@ class CreateGlanceRepositoryCommand(CreateAndConfigureRepositoryCommand):
                  distributor_config=config,
                  auto_publish=auto_publish,
                  distributor_id=constants.CLI_WEB_DISTRIBUTOR_ID),
-            dict(distributor_type_id=constants.DISTRIBUTOR_EXPORT_TYPE_ID,
-                 distributor_config=config,
-                 auto_publish=False, distributor_id=constants.CLI_EXPORT_DISTRIBUTOR_ID)
         ]
 
         return data

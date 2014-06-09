@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+# NEED TO VERIFY
 
 setup(
     name='pulp_glance_common',

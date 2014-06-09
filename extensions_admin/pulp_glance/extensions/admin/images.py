@@ -1,4 +1,5 @@
 from gettext import gettext as _
+# NEED TO VERIFY
 
 from pulp.client.commands import options
 from pulp.client.commands.criteria import DisplayUnitAssociationsCommand
@@ -88,21 +89,5 @@ class ImageSearchCommand(DisplayUnitAssociationsCommand):
         repo_id = kwargs.pop(options.OPTION_REPO_ID.keyword)
         kwargs['type_ids'] = [constants.IMAGE_TYPE_ID]
         images = self.context.server.repo_unit.search(repo_id, **kwargs).response_body
-
-        # Get the list of tags for the repo
-        response = self.context.server.repo.repository(repo_id).response_body
-        scratchpad = response.get(u'scratchpad', {})
-        tags = scratchpad.get(u'tags', {})
-        image_tags = {}
-
-        # reverse the dictionary to map images to tags
-        for key, value in tags.iteritems():
-            image_tags.setdefault(value, []).append(key)
-
-        # Add the tag info to the images list
-        for image in images:
-            image_id = image[u'metadata'][u'image_id']
-            if image_id in image_tags:
-                image[u'metadata'][u'tags'] = image_tags.get(image_id)
 
         self.prompt.render_document_list(images)

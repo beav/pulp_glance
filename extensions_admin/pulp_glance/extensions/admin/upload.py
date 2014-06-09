@@ -1,3 +1,6 @@
+import hashlib
+# NEED TO VERIFY
+
 from pulp.client.commands.repo.upload import UploadCommand
 
 from pulp_glance.common import constants
@@ -14,12 +17,9 @@ class UploadGlanceImageCommand(UploadCommand):
         return constants.IMAGE_TYPE_ID
 
 
-    # TODO: FIX
     def generate_unit_key_and_metadata(self, filename, **kwargs):
         """
-        Returns the unit key and metadata. This looks in the tarball and finds
-        the layer that is not referenced as a parent to any other layer, in order
-        to identify the ID of the image that is the leaf of the tree.
+        Generates the unit key and metadata.
 
         :param filename: full path to the file being uploaded
         :type  filename: str, None
@@ -30,9 +30,19 @@ class UploadGlanceImageCommand(UploadCommand):
         :return: tuple of unit key and metadata to upload for the file
         :rtype:  tuple
         """
-        # TODO: fix
-        #unit_key = {'image_id': tarutils.get_youngest_child(filename)}
+        checksum = self._find_image_md5sum(filename)
+        unit_key = {'checksum': checksum}
         metadata = {}
-        unit_key = {}
 
         return unit_key, metadata
+
+   def _find_image_md5sum(self, filename):
+        """
+        Return an MD5 sum for a given filename. Glance also uses MD5 sums for
+        images, which is why we use it here as well.
+        """
+        md5 = hashlib.md5()
+        with open(filename,'rb') as f: 
+            for chunk in iter(lambda: f.read(128 * md5.block_size), b''): 
+                 md5.update(chunk)
+        return md5.hexdigest()

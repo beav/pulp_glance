@@ -1,4 +1,5 @@
 from gettext import gettext as _
+# NEED TO VERIFY
 
 from pulp.client.commands.repo import cudl, sync_publish, status
 from pulp.client.extensions.decorator import priority
@@ -50,7 +51,6 @@ def add_upload_section(context, parent_section):
     :type  parent_section:  pulp.client.extensions.extensions.PulpCliSection
     """
     upload_section = parent_section.create_subsection(SECTION_UPLOADS, DESC_UPLOADS)
-
     upload_section.add_command(UploadGlanceImageCommand(context))
 
     return upload_section

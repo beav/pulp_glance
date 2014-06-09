@@ -1,4 +1,5 @@
 import logging
+# NEED TO VERIFY
 import os
 from urlparse import urlparse
 
