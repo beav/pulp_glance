@@ -1,2 +1,2 @@
-pulp_glanceimage
-================
+pulp_glance
+===========

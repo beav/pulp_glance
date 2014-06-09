@@ -1,0 +1,9 @@
+{"types": [
+    {
+        "id": "glance_image",
+        "display_name": "Glance Image",
+        "description": "Glance Image",
+        "unit_key": ["image_id"],
+        "search_indexes": []
+    }
+]}
