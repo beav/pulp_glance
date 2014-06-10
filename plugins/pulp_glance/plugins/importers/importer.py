@@ -46,9 +46,7 @@ class GlanceImageImporter(Importer):
 
     def upload_unit(self, repo, type_id, unit_key, metadata, file_path, conduit, config):
         """
-        Upload a glance image.  This will import all images in that tarfile
-        into the specified repository, each as an individual unit. This will also
-        update the repo's tags to reflect the tags present in the tarfile.
+        Upload a glance image.
 
         The following is copied from the superclass.
 
@@ -167,8 +165,6 @@ class GlanceImageImporter(Importer):
     def remove_units(self, repo, units, config):
         """
         Removes content units from the given repository.
-
-        This method is removes the tags associated with images in the repository
 
         This call will not result in the unit being deleted from Pulp itself.
 

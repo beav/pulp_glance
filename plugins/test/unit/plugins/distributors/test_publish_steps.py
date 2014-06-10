@@ -27,7 +27,6 @@ class TestPublishImagesStep(unittest.TestCase):
         repo = Repository('foo_repo_id', working_dir=self.working_directory)
         config = PluginCallConfiguration(None, None)
         conduit = RepoPublishConduit(repo.id, 'foo_repo')
-        conduit.get_repo_scratchpad = Mock(return_value={u'tags': {}})
         self.parent = PublishStep('test-step', repo, conduit, config)
 
     def tearDown(self):
