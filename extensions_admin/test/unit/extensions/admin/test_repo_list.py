@@ -32,12 +32,11 @@ class TestListGlanceRepositoriesCommand(unittest.TestCase):
         repos = [
             {
                 'id': 'matching',
-                'notes': {pulp_constants.REPO_NOTE_TYPE_KEY: constants.REPO_NOTE_GLANCE, },
+                'notes': {pulp_constants.REPO_NOTE_TYPE_KEY: constants.REPO_NOTE_GLANCE,},
                 'importers': [
                     {'config': {}}
                 ],
                 'distributors': [
-                    {'id': constants.CLI_EXPORT_DISTRIBUTOR_ID},
                     {'id': constants.CLI_WEB_DISTRIBUTOR_ID}
                 ]
             },
@@ -53,10 +52,6 @@ class TestListGlanceRepositoriesCommand(unittest.TestCase):
         # Verify
         self.assertEqual(1, len(repos))
         self.assertEqual(repos[0]['id'], 'matching')
-
-        #   Make sure the export distributor was removed
-        self.assertEqual(len(repos[0]['distributors']), 1)
-        self.assertEqual(repos[0]['distributors'][0]['id'], constants.CLI_EXPORT_DISTRIBUTOR_ID)
 
     def test_get_repositories_no_details(self):
         # Setup

@@ -80,7 +80,8 @@ class GlanceImageImporter(Importer):
 
         # TODO: fix
         # save those models as units in pulp
-        upload.save_models(conduit, models, file_path)
+        # upload.save_models(conduit, models, file_path)
+        pass
 
     def import_units(self, source_repo, dest_repo, import_conduit, config, units=None):
         """

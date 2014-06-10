@@ -35,7 +35,7 @@ class WebPublisher(PublishStep):
         self.web_working_dir = os.path.join(self.get_working_dir(), 'web')
         master_publish_dir = configuration.get_master_publish_dir(repo, config)
         atomic_publish_step = AtomicDirectoryPublishStep(self.get_working_dir(),
-                                                         [('web', publish_dir),]
+                                                         [('web', publish_dir),],
                                                          master_publish_dir,
                                                          step_type=constants.PUBLISH_STEP_OVER_HTTP)
         atomic_publish_step.description = _('Making files available via web.')

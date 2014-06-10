@@ -35,13 +35,13 @@ class UploadGlanceImageCommand(UploadCommand):
 
         return unit_key, metadata
 
-   def _find_image_md5sum(self, filename):
+    def _find_image_md5sum(self, filename):
         """
         Return an MD5 sum for a given filename. Glance also uses MD5 sums for
         images, which is why we use it here as well.
         """
         md5 = hashlib.md5()
         with open(filename,'rb') as f: 
-            for chunk in iter(lambda: f.read(128 * md5.block_size), b''): 
+            for chunk in iter(lambda: f.read(128 * md5.block_size), b''):
                  md5.update(chunk)
         return md5.hexdigest()
