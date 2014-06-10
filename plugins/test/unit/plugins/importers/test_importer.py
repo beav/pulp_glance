@@ -3,14 +3,11 @@ import unittest
 
 import mock
 from pulp.plugins.config import PluginCallConfiguration
-from pulp.plugins.importer import Importer
 from pulp.plugins.model import Repository
 
 import data
 from pulp_glance.common import constants
-from pulp_glance.common.models import GlanceImage
-from pulp_glance.plugins.importers.importer import GlanceImageImporter, entry_point
-from pulp_glance.plugins.importers import upload
+from pulp_glance.plugins.importers.importer import GlanceImageImporter
 
 
 class TestBasics(unittest.TestCase):
@@ -32,7 +29,8 @@ class TestImportUnits(unittest.TestCase):
         self.config = PluginCallConfiguration({}, {})
 
     def test_import_all(self):
-        mock_unit = mock.Mock(unit_key={'image_checksum': '5a46e37274928bb39f84415e2ef61240'}, metadata={})
+        mock_unit = mock.Mock(unit_key={'image_checksum':
+                                        '5a46e37274928bb39f84415e2ef61240'}, metadata={})
         self.conduit.get_source_units.return_value = [mock_unit]
         result = GlanceImageImporter().import_units(self.source_repo, self.dest_repo, self.conduit,
                                                     self.config)
@@ -40,7 +38,8 @@ class TestImportUnits(unittest.TestCase):
         self.conduit.associate_unit.assert_called_once_with(mock_unit)
 
     def test_import(self):
-        mock_unit = mock.Mock(unit_key={'image_checksum': '5a46e37274928bb39f84415e2ef61240'}, metadata={})
+        mock_unit = mock.Mock(unit_key={'image_checksum':
+                                        '5a46e37274928bb39f84415e2ef61240'}, metadata={})
         result = GlanceImageImporter().import_units(self.source_repo, self.dest_repo, self.conduit,
                                                     self.config, units=[mock_unit])
         self.assertEquals(result, [mock_unit])

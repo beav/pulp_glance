@@ -1,8 +1,10 @@
+
+# TODO: not all of these are used, extras need to be removed
+
 IMAGE_TYPE_ID = 'glance_image'
 IMPORTER_TYPE_ID = 'glance_importer'
 IMPORTER_CONFIG_FILE_NAME = 'server/plugins.conf.d/glance_importer.json'
 DISTRIBUTOR_WEB_TYPE_ID = 'glance_distributor_web'
-DISTRIBUTOR_EXPORT_TYPE_ID = 'glance_distributor_export'
 CLI_WEB_DISTRIBUTOR_ID = 'glance_web_distributor_name_cli'
 CLI_EXPORT_DISTRIBUTOR_ID = 'glance_export_distributor_name_cli'
 DISTRIBUTOR_CONFIG_FILE_NAME = 'server/plugins.conf.d/glance_distributor.json'

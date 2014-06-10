@@ -1,14 +1,12 @@
 from gettext import gettext as _
 
 from pulp.client import parsers
-from pulp.client.commands.options import OPTION_REPO_ID
 from pulp.client.commands.repo.cudl import CreateAndConfigureRepositoryCommand
 from pulp.client.commands.repo.cudl import UpdateRepositoryCommand
 from pulp.common.constants import REPO_NOTE_TYPE_KEY
 from pulp.client.extensions.extensions import PulpCliOption
 
 from pulp_glance.common import constants
-from pulp_glance.extensions.admin import parsers as glance_parsers
 
 
 d = _('if "true", on each successful sync the repository will automatically be '
@@ -71,7 +69,6 @@ class UpdateGlanceRepositoryCommand(UpdateRepositoryCommand):
 
         # Update distributor configuration
         web_config = {}
-        export_config = {}
         value = kwargs.pop(OPT_PROTECTED.keyword, None)
         if value is not None:
             web_config[constants.CONFIG_KEY_PROTECTED] = value

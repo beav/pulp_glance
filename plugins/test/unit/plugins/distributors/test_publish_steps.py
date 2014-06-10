@@ -6,7 +6,6 @@ import unittest
 
 from mock import Mock, patch
 
-from pulp.devel.unit.util import touch
 from pulp.plugins.conduits.repo_publish import RepoPublishConduit
 from pulp.plugins.config import PluginCallConfiguration
 from pulp.plugins.model import Repository

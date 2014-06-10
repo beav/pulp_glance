@@ -32,7 +32,7 @@ class TestListGlanceRepositoriesCommand(unittest.TestCase):
         repos = [
             {
                 'id': 'matching',
-                'notes': {pulp_constants.REPO_NOTE_TYPE_KEY: constants.REPO_NOTE_GLANCE,},
+                'notes': {pulp_constants.REPO_NOTE_TYPE_KEY: constants.REPO_NOTE_GLANCE, },
                 'importers': [
                     {'config': {}}
                 ],

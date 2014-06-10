@@ -4,7 +4,7 @@ import logging
 import os
 
 from pulp.plugins.util.publish_step import PublishStep, UnitPublishStep, \
-    AtomicDirectoryPublishStep, SaveTarFilePublishStep
+    AtomicDirectoryPublishStep
 
 from pulp_glance.common import constants
 from pulp_glance.plugins.distributors import configuration
@@ -35,7 +35,7 @@ class WebPublisher(PublishStep):
         self.web_working_dir = os.path.join(self.get_working_dir(), 'web')
         master_publish_dir = configuration.get_master_publish_dir(repo, config)
         atomic_publish_step = AtomicDirectoryPublishStep(self.get_working_dir(),
-                                                         [('web', publish_dir),],
+                                                         [('web', publish_dir)],
                                                          master_publish_dir,
                                                          step_type=constants.PUBLISH_STEP_OVER_HTTP)
         atomic_publish_step.description = _('Making files available via web.')
@@ -59,11 +59,7 @@ class PublishImagesStep(UnitPublishStep):
         """
         Initialize the metadata contexts
         """
-        self.redirect_context = RedirectFileContext(self.get_working_dir(),
-                                                    self.get_conduit(),
-                                                    self.parent.config,
-                                                    self.get_repo())
-        self.redirect_context.initialize()
+        pass
 
     def process_unit(self, unit):
         """
@@ -72,8 +68,6 @@ class PublishImagesStep(UnitPublishStep):
         :param unit: The unit to process
         :type unit: pulp_glance.common.models.GlanceImage
         """
-        self.redirect_context.add_unit_metadata(unit)
-        target_base = os.path.join(self.get_web_directory(), unit.unit_key['image_checksum'])
         #for file_name in files:
         #    self._create_symlink(os.path.join(unit.storage_path, file_name),
         #                         os.path.join(target_base, file_name))

@@ -15,7 +15,6 @@ class UploadGlanceImageCommand(UploadCommand):
         """
         return constants.IMAGE_TYPE_ID
 
-
     def generate_unit_key_and_metadata(self, filename, **kwargs):
         """
         Generates the unit key and metadata.
@@ -41,7 +40,7 @@ class UploadGlanceImageCommand(UploadCommand):
         images, which is why we use it here as well.
         """
         md5 = hashlib.md5()
-        with open(filename,'rb') as f: 
+        with open(filename, 'rb') as f:
             for chunk in iter(lambda: f.read(128 * md5.block_size), b''):
-                 md5.update(chunk)
+                md5.update(chunk)
         return md5.hexdigest()

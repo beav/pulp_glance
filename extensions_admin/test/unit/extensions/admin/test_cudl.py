@@ -3,7 +3,6 @@ import unittest
 
 from mock import Mock
 from pulp.common.constants import REPO_NOTE_TYPE_KEY
-from pulp.devel.unit.util import compare_dict
 
 from pulp_glance.common import constants
 from pulp_glance.extensions.admin import cudl
@@ -42,9 +41,9 @@ class TestUpdateGlanceRepositoryCommand(unittest.TestCase):
         self.context.server.repo_unit.search.return_value = self.unit_search_command
 
     def test_image_not_found(self):
-       # TODO: fix
-       pass
+        # TODO: fix
+        pass
 
     def test_repo_update_distributors(self):
-       # TODO: fix
-       pass
+        # TODO: fix
+        pass

@@ -5,10 +5,8 @@ import logging
 from pulp.common.config import read_json_config
 from pulp.plugins.conduits.mixins import UnitAssociationCriteria
 from pulp.plugins.importer import Importer
-import pulp.server.managers.factory as manager_factory
 
 from pulp_glance.common import constants
-from pulp_glance.plugins.importers import upload
 
 
 _logger = logging.getLogger(__name__)
@@ -184,6 +182,5 @@ class GlanceImageImporter(Importer):
         :param config: plugin configuration
         :type  config: pulp.plugins.config.PluginCallConfiguration
         """
-        repo_manager = manager_factory.repo_manager()
-        unit_ids = set([unit.unit_key[u'image_checksum'] for unit in units])
         # TODO: fix
+        pass

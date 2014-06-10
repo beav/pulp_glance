@@ -1,14 +1,3 @@
-import contextlib
-import functools
-import gzip
-import json
-import os
-import tarfile
-
-from pulp.server.managers import factory
-
-from pulp_glance.common import models
-
 
 def get_models(metadata, unit_key, mask_id=''):
     """

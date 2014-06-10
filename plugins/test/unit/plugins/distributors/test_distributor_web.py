@@ -5,7 +5,6 @@ import tempfile
 import unittest
 
 from mock import Mock, MagicMock, patch
-from pulp.devel.unit.util import touch
 from pulp.plugins.conduits.repo_publish import RepoPublishConduit
 from pulp.plugins.config import PluginCallConfiguration
 from pulp.plugins.model import Repository
@@ -53,7 +52,6 @@ class TestBasics(unittest.TestCase):
     def test_distributor_removed(self):
         # TODO: fix
         pass
-
 
     @patch('pulp_glance.plugins.distributors.distributor_web.configuration.get_app_publish_dir')
     @patch('pulp_glance.plugins.distributors.distributor_web.configuration.get_master_publish_dir')

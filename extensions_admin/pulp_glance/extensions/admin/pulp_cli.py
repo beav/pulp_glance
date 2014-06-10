@@ -2,7 +2,6 @@ from gettext import gettext as _
 
 from pulp.client.commands.repo import cudl, sync_publish, status
 from pulp.client.extensions.decorator import priority
-from pulp.client.extensions.extensions import PulpCliOption
 
 from pulp_glance.common import constants
 from pulp_glance.extensions.admin.cudl import CreateGlanceRepositoryCommand
@@ -96,4 +95,3 @@ def add_publish_section(context, parent_section):
         sync_publish.PublishStatusCommand(context, renderer))
 
     return section
-

@@ -23,4 +23,3 @@ class TestBasics(unittest.TestCase):
         image = models.GlanceImage('70924d6fa4b2d745185fa4660703a5c0')
         metadata = image.unit_metadata
         self.assertEqual(metadata, {})
-
