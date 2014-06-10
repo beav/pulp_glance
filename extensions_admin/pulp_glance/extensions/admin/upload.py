@@ -29,18 +29,44 @@ class UploadGlanceImageCommand(UploadCommand):
         :rtype:  tuple
         """
         checksum = self._find_image_md5sum(filename)
-        unit_key = {'checksum': checksum}
+        size = self._find_image_size(filename)
+        unit_key = {'image_checksum': checksum, 'image_size': size}
         metadata = {}
 
         return unit_key, metadata
+
+    # TODO: these two methods should probably be in platform. They are used by
+    # pulp_rpm as well.
 
     def _find_image_md5sum(self, filename):
         """
         Return an MD5 sum for a given filename. Glance also uses MD5 sums for
         images, which is why we use it here as well.
+
+        :param filename: full path to the file to checksum
+        :type  filename: str, None
+
+        :return:            The file's md5sum
+        :rtype:             basestring
         """
         md5 = hashlib.md5()
         with open(filename, 'rb') as f:
             for chunk in iter(lambda: f.read(128 * md5.block_size), b''):
                 md5.update(chunk)
         return md5.hexdigest()
+
+    def _find_image_size(self, filename):
+        """
+        Return filesize for a given filename.
+
+        :param filename: full path to the file to get the size of
+        :type  filename: str, None
+
+        :return:            The file's size, in Bytes
+        :rtype:             int
+        """
+        with open(filename, 'rb') as f:
+            # Calculate the size by seeking to the end to find the file size with tell()
+            f.seek(0, 2)
+            size = f.tell()
+            return size

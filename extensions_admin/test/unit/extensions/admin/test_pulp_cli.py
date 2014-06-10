@@ -43,6 +43,3 @@ class TestInitialize(unittest.TestCase):
         section = repo_section.subsections['publish']
         self.assertTrue(isinstance(section.commands['status'], PublishStatusCommand))
         self.assertTrue(isinstance(section.commands['run'], RunPublishRepositoryCommand))
-
-        self.assertTrue(isinstance(section.commands['status'], PublishStatusCommand))
-        self.assertTrue(isinstance(section.commands['run'], RunPublishRepositoryCommand))
