@@ -24,7 +24,8 @@ class GlanceImage(object):
         :rtype:     dict
         """
         return {
-            'image_checksum': self.image_checksum
+            'image_checksum': self.image_checksum,
+            'image_size': self.image_size
         }
 
     @property
